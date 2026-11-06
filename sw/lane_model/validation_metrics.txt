@@ -1,0 +1,2 @@
+class_accuracy=83.79%
+balanced_accuracy=86.91%

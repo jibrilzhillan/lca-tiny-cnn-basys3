@@ -1,0 +1,15 @@
+LCA – Tiny CNN FPGA Reference Model
+Input: 1x32x64
+Floating-point epochs: 100
+QAT epochs: 50
+Fw1=8, Fw2=8, Fa=7, S1=9
+L1: Conv 1->4, kernel 3x3, output 4x30x62
+L2: ReLU + UINT7 requantization
+L3: MaxPool 2x2, output 4x15x31
+L4: Flatten C,Y,X, output 1860
+L5: FC 1860->3
+L6: Argmax
+Conv accumulator: INT24
+FC accumulator: INT32
+Total parameters: 5623
+Total MACs: 72540

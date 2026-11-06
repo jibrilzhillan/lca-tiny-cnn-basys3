@@ -1,0 +1,17 @@
+index,class_id,class_name,tusimple_path,preprocessed_path
+0,0,LEFT,test_set/clips/0601/1494453293694248593/20.jpg,preprocessed/00_LEFT.png
+1,1,CENTER,test_set/clips/0601/1494453915421521246/20.jpg,preprocessed/01_CENTER.png
+2,2,RIGHT,test_set/clips/0530/1492635099561765072_0/20.jpg,preprocessed/02_RIGHT.png
+3,0,LEFT,test_set/clips/0601/1494452613491980502/20.jpg,preprocessed/03_LEFT.png
+4,1,CENTER,test_set/clips/0530/1492628062134609982_0/20.jpg,preprocessed/04_CENTER.png
+5,2,RIGHT,test_set/clips/0530/1492635581272161668_0/20.jpg,preprocessed/05_RIGHT.png
+6,0,LEFT,test_set/clips/0601/1495485025634416488/20.jpg,preprocessed/06_LEFT.png
+7,1,CENTER,test_set/clips/0530/1492629881598007784_0/20.jpg,preprocessed/07_CENTER.png
+8,2,RIGHT,test_set/clips/0601/1495058559630260620/20.jpg,preprocessed/08_RIGHT.png
+9,0,LEFT,test_set/clips/0530/1492630520214490950_0/20.jpg,preprocessed/09_LEFT.png
+10,1,CENTER,test_set/clips/0531/1492627794294178571/20.jpg,preprocessed/10_CENTER.png
+11,2,RIGHT,test_set/clips/0530/1492629972545498872_0/20.jpg,preprocessed/11_RIGHT.png
+12,0,LEFT,test_set/clips/0601/1495058759543485959/20.jpg,preprocessed/12_LEFT.png
+13,1,CENTER,test_set/clips/0601/1495492696579699900/20.jpg,preprocessed/13_CENTER.png
+14,2,RIGHT,test_set/clips/0531/1492636821593556828/20.jpg,preprocessed/14_RIGHT.png
+15,0,LEFT,test_set/clips/0601/1494453729502898369/20.jpg,preprocessed/15_LEFT.png

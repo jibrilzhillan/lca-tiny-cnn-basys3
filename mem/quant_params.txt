@@ -1,0 +1,7 @@
+# Scales for the fw2fix weights in mem/, decision D25 (Fw2 changed from D24's 12 to 8);
+# source: sw/lane_model/lane_model_summary.txt.
+# Input uint8 scale 2^-8; round half up, activation clamp 0..127.
+Fw1=8
+Fa=7
+Fw2=8
+S1=9
