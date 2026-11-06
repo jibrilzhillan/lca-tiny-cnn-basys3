@@ -1,0 +1,14 @@
+build    B05
+date     2026-11-04 15:23
+commit   e1fc44c (m2-dsp)
+dirty    no (uncommitted changes under hw/ or mem/)
+vivado   2026.1
+top      top_basys3
+generic  
+WNS      0.651371 ns
+TNS      0.000000 ns
+WHS      0.127724 ns
+LUT      429
+FF       364
+BRAM     12.5 tiles
+DSP      2

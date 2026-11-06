@@ -1,0 +1,25 @@
+# Vivado
+*.jou
+*.log
+*.str
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.gen/
+.Xil/
+vivado_pid*.zip
+webtalk*
+xsim.dir/
+# Python
+__pycache__/
+*.pyc
+.venv/
+# Office lock files / OS
+~$*
+Thumbs.db
+.DS_Store
+
+# Generated Vivado project (recreate with hw/vivado/create_project.tcl)
+hw/vivado/build/

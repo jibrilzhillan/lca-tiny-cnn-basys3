@@ -1,0 +1,14 @@
+build    B02
+date     2026-11-04 12:34
+commit   2583f6a (day5/synthesis)
+dirty    yes (uncommitted changes under hw/ or mem/)
+vivado   2026.1
+top      top_basys3
+generic  
+WNS      -0.258771 ns
+TNS      -2.059441 ns
+WHS      0.096295 ns
+LUT      652
+FF       405
+BRAM     12.5 tiles
+DSP      0

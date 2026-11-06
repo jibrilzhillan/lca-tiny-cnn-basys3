@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 70 1200 450" width="1200" height="450" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <pattern id="grid" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path d="M4 0 L0 0 0 4" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="0.6"/>
+    </pattern>
+    <pattern id="gridDark" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path d="M4 0 L0 0 0 4" fill="none" stroke="#000000" stroke-opacity="0.10" stroke-width="0.6"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3A4250"/>
+    </marker>
+    <style>
+      .h  { font-size: 22px; font-weight: 700; fill: #111111; }
+      .st { font-size: 13px; fill: #5A6472; }
+      .n  { font-size: 13.5px; font-weight: 700; fill: #111111; }
+      .sh { font-size: 13px; font-weight: 600; fill: #1565C0; }
+      .p  { font-size: 11.5px; fill: #3A4250; }
+      .dt { font-size: 11px; fill: #0D4FA0; font-family: Consolas, "Courier New", monospace; }
+      .tiny { font-size: 11px; fill: #3A4250; }
+    </style>
+  </defs>
+
+  <rect y="70" width="1200" height="450" fill="#FFFFFF"/>
+  <text x="40" y="104" class="h">Lane Centering Assist (LCA) – Tiny CNN</text>
+  <text x="40" y="126" class="st">72,540 MACs per image · 5,616 int8 weights · 7 int32 biases · trained offline, inference on the FPGA</text>
+
+  <!-- ================= Input image 32x16 (4 px per pixel) ================= -->
+  <rect x="40" y="192" width="128" height="64" fill="#3A3F45"/>
+  <path d="M52 256 Q70 222 96 192" stroke="#F5F5F5" stroke-width="3" fill="none"/>
+  <path d="M150 256 Q126 222 116 192" stroke="#F5F5F5" stroke-width="3" fill="none"/>
+  <rect x="40" y="192" width="128" height="64" fill="url(#grid)" stroke="#111111" stroke-width="1"/>
+  <!-- 3x3 kernel window -->
+  <rect x="64" y="212" width="12" height="12" fill="#FFD54F" fill-opacity="0.35" stroke="#F9A825" stroke-width="2"/>
+
+  <!-- ================= Conv maps 4 x 14x30 ================= -->
+  <rect x="290" y="170" width="120" height="56" fill="#E8D9F2" stroke="#7B1FA2" stroke-width="1.2"/>
+  <rect x="290" y="170" width="120" height="56" fill="url(#gridDark)"/>
+  <rect x="280" y="180" width="120" height="56" fill="#FFF0C7" stroke="#C68A00" stroke-width="1.2"/>
+  <rect x="280" y="180" width="120" height="56" fill="url(#gridDark)"/>
+  <rect x="270" y="190" width="120" height="56" fill="#D2EEEA" stroke="#00897B" stroke-width="1.2"/>
+  <rect x="270" y="190" width="120" height="56" fill="url(#gridDark)"/>
+  <rect x="260" y="200" width="120" height="56" fill="#DCE9FA" stroke="#1565C0" stroke-width="1.4"/>
+  <rect x="260" y="200" width="120" height="56" fill="url(#gridDark)"/>
+  <!-- light activation texture on front map -->
+  <path d="M276 256 Q290 230 312 200" stroke="#1565C0" stroke-opacity="0.45" stroke-width="5" fill="none"/>
+  <path d="M362 256 Q344 230 336 200" stroke="#1565C0" stroke-opacity="0.25" stroke-width="5" fill="none"/>
+  <!-- conv output cell + projection from kernel -->
+  <rect x="284" y="220" width="4" height="4" fill="#F9A825" stroke="#B26A00" stroke-width="0.8"/>
+  <g stroke="#F9A825" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="76" y1="212" x2="284" y2="220"/>
+    <line x1="76" y1="224" x2="284" y2="224"/>
+  </g>
+  <!-- 2x2 pool window on front conv map -->
+  <rect x="340" y="232" width="8" height="8" fill="#FF7043" fill-opacity="0.35" stroke="#E64A19" stroke-width="1.6"/>
+
+  <!-- ReLU chip -->
+  <rect x="424" y="150" width="104" height="42" rx="8" fill="#F2F6FB" stroke="#1565C0" stroke-width="1"/>
+  <text x="476" y="167" text-anchor="middle" class="n" style="font-size:12.5px">ReLU + requant</text>
+  <text x="476" y="183" text-anchor="middle" class="dt">clamp 0…127</text>
+
+  <!-- ================= Pool maps 4 x 7x15 ================= -->
+  <rect x="544" y="190" width="60" height="28" fill="#E8D9F2" stroke="#7B1FA2" stroke-width="1.2"/>
+  <rect x="536" y="198" width="60" height="28" fill="#FFF0C7" stroke="#C68A00" stroke-width="1.2"/>
+  <rect x="528" y="206" width="60" height="28" fill="#D2EEEA" stroke="#00897B" stroke-width="1.2"/>
+  <rect x="520" y="214" width="60" height="28" fill="#DCE9FA" stroke="#1565C0" stroke-width="1.4"/>
+  <rect x="520" y="214" width="60" height="28" fill="url(#gridDark)"/>
+  <rect x="560" y="226" width="4" height="4" fill="#FF7043" stroke="#E64A19" stroke-width="0.8"/>
+  <g stroke="#E64A19" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="348" y1="232" x2="560" y2="226"/>
+    <line x1="348" y1="240" x2="560" y2="230"/>
+  </g>
+
+  <!-- arrows between stages -->
+  <path d="M612 252 L674 252" stroke="#3A4250" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- ================= Flatten 420 ================= -->
+  <rect x="680" y="150" width="16" height="50" fill="#1565C0"/>
+  <rect x="680" y="200" width="16" height="50" fill="#00897B"/>
+  <rect x="680" y="250" width="16" height="50" fill="#C68A00"/>
+  <rect x="680" y="300" width="16" height="50" fill="#7B1FA2"/>
+  <rect x="680" y="150" width="16" height="200" fill="none" stroke="#111111" stroke-width="1"/>
+  <text x="674" y="178" text-anchor="end" class="tiny">0–464</text>
+  <text x="674" y="228" text-anchor="end" class="tiny">465–929</text>
+  <text x="674" y="282" text-anchor="end" class="tiny">930–1394</text>
+  <text x="674" y="328" text-anchor="end" class="tiny">1395–1859</text>
+
+  <!-- ================= FC fan ================= -->
+  <g stroke="#5A6472" stroke-opacity="0.28" stroke-width="0.9">
+    <line x1="696" y1="160" x2="852" y2="190"/><line x1="696" y1="160" x2="852" y2="250"/><line x1="696" y1="160" x2="852" y2="310"/>
+    <line x1="696" y1="185" x2="852" y2="190"/><line x1="696" y1="185" x2="852" y2="250"/><line x1="696" y1="185" x2="852" y2="310"/>
+    <line x1="696" y1="210" x2="852" y2="190"/><line x1="696" y1="210" x2="852" y2="250"/><line x1="696" y1="210" x2="852" y2="310"/>
+    <line x1="696" y1="235" x2="852" y2="190"/><line x1="696" y1="235" x2="852" y2="250"/><line x1="696" y1="235" x2="852" y2="310"/>
+    <line x1="696" y1="260" x2="852" y2="190"/><line x1="696" y1="260" x2="852" y2="250"/><line x1="696" y1="260" x2="852" y2="310"/>
+    <line x1="696" y1="285" x2="852" y2="190"/><line x1="696" y1="285" x2="852" y2="250"/><line x1="696" y1="285" x2="852" y2="310"/>
+    <line x1="696" y1="310" x2="852" y2="190"/><line x1="696" y1="310" x2="852" y2="250"/><line x1="696" y1="310" x2="852" y2="310"/>
+    <line x1="696" y1="335" x2="852" y2="190"/><line x1="696" y1="335" x2="852" y2="250"/><line x1="696" y1="335" x2="852" y2="310"/>
+  </g>
+  <circle cx="870" cy="190" r="18" fill="#1565C0"/>
+  <circle cx="870" cy="250" r="18" fill="#DCE9FA" stroke="#1565C0" stroke-width="1.4"/>
+  <circle cx="870" cy="310" r="18" fill="#DCE9FA" stroke="#1565C0" stroke-width="1.4"/>
+  <text x="870" y="195" text-anchor="middle" class="n" style="fill:#FFFFFF">L</text>
+  <text x="870" y="255" text-anchor="middle" class="n" style="fill:#1565C0">S</text>
+  <text x="870" y="315" text-anchor="middle" class="n" style="fill:#1565C0">R</text>
+  <text x="896" y="184" class="dt" style="font-weight:700">1,200</text>
+  <text x="896" y="244" class="dt">300</text>
+  <text x="896" y="304" class="dt">−50</text>
+
+  <!-- ================= Argmax ================= -->
+  <g stroke="#3A4250" stroke-width="1.2">
+    <line x1="940" y1="190" x2="968" y2="238"/>
+    <line x1="940" y1="250" x2="968" y2="250"/>
+    <line x1="940" y1="310" x2="968" y2="262"/>
+  </g>
+  <rect x="968" y="226" width="84" height="48" rx="8" fill="#F2F6FB" stroke="#1565C0" stroke-width="1.4"/>
+  <text x="1010" y="255" text-anchor="middle" class="n">argmax</text>
+  <path d="M1052 250 L1076 250" stroke="#3A4250" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- ================= Output ================= -->
+  <rect x="1080" y="222" width="104" height="56" rx="10" fill="#1565C0"/>
+  <path d="M1094 250 L1108 238 L1108 245 L1124 245 L1124 255 L1108 255 L1108 262 Z" fill="#FFFFFF"/>
+  <text x="1132" y="256" class="n" style="fill:#FFFFFF; font-size:15px">LEFT</text>
+
+  <!-- ================= Stage labels ================= -->
+  <line x1="40" y1="372" x2="1184" y2="372" stroke="#E2E8F0" stroke-width="1"/>
+
+  <text x="104" y="398" text-anchor="middle" class="n">Input</text>
+  <text x="104" y="418" text-anchor="middle" class="sh">1 × 32 × 64</text>
+  <text x="104" y="436" text-anchor="middle" class="p">road image, 2,048 px</text>
+  <text x="104" y="456" text-anchor="middle" class="dt">uint8</text>
+
+  <text x="330" y="398" text-anchor="middle" class="n">Conv 3×3, 4 filters</text>
+  <text x="330" y="418" text-anchor="middle" class="sh">4 × 30 × 62</text>
+  <text x="330" y="436" text-anchor="middle" class="p">36 w + 4 b · 66,960 MACs</text>
+  <text x="330" y="456" text-anchor="middle" class="dt">int24 acc → uint7</text>
+
+  <text x="562" y="398" text-anchor="middle" class="n">MaxPool 2×2</text>
+  <text x="562" y="418" text-anchor="middle" class="sh">4 × 15 × 31</text>
+  <text x="562" y="436" text-anchor="middle" class="p">keep max of 4</text>
+  <text x="562" y="456" text-anchor="middle" class="dt">uint7</text>
+
+  <text x="688" y="398" text-anchor="middle" class="n">Flatten</text>
+  <text x="688" y="418" text-anchor="middle" class="sh">1,860</text>
+  <text x="688" y="436" text-anchor="middle" class="p">order c, y, x</text>
+  <text x="688" y="456" text-anchor="middle" class="dt">uint7</text>
+
+  <text x="858" y="398" text-anchor="middle" class="n">Fully connected</text>
+  <text x="858" y="418" text-anchor="middle" class="sh">3 logits</text>
+  <text x="858" y="436" text-anchor="middle" class="p">5,580 w + 3 b · 5,580 MACs</text>
+  <text x="858" y="456" text-anchor="middle" class="dt">int32</text>
+
+  <text x="1010" y="398" text-anchor="middle" class="n">Argmax</text>
+  <text x="1010" y="418" text-anchor="middle" class="sh">class 0–2</text>
+  <text x="1010" y="436" text-anchor="middle" class="p">ties → lowest</text>
+  <text x="1010" y="456" text-anchor="middle" class="dt">2-bit</text>
+
+  <text x="1136" y="398" text-anchor="middle" class="n">Car position</text>
+  <text x="1136" y="418" text-anchor="middle" class="sh">L / S / R</text>
+  <text x="1136" y="436" text-anchor="middle" class="p">LEDs + 7-seg</text>
+
+  <!-- legend -->
+  <rect x="40" y="484" width="12" height="12" fill="#FFD54F" fill-opacity="0.35" stroke="#F9A825" stroke-width="2"/>
+  <text x="58" y="494" class="tiny">3×3 kernel window → one conv output (9 MACs)</text>
+  <rect x="330" y="484" width="12" height="12" fill="#FF7043" fill-opacity="0.35" stroke="#E64A19" stroke-width="1.6"/>
+  <text x="348" y="494" class="tiny">2×2 window → one pooled value</text>
+  <rect x="560" y="484" width="12" height="12" fill="#1565C0"/><rect x="574" y="484" width="12" height="12" fill="#00897B"/><rect x="588" y="484" width="12" height="12" fill="#C68A00"/><rect x="602" y="484" width="12" height="12" fill="#7B1FA2"/>
+  <text x="620" y="494" class="tiny">feature maps c0–c3 (one per filter)</text>
+  <text x="884" y="494" class="tiny">Logit values are an illustrative example</text>
+</svg>

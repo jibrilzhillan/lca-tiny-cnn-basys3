@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" width="1200" height="740" font-family="Segoe UI, Arial, sans-serif" font-size="12">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2e7d32"/>
+    </marker>
+    <marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6a1b9a"/>
+    </marker>
+    <style>
+      .t { font-weight: 600; font-size: 12.5px; }
+      .s { font-size: 10.5px; fill: #444; }
+      .h { font-weight: 700; font-size: 15px; }
+      .cmp { fill: #e3f2fd; stroke: #1565c0; stroke-width: 1.4; }
+      .mem { fill: #fff8e1; stroke: #b28704; stroke-width: 1.4; }
+      .ctl { fill: #f3e5f5; stroke: #6a1b9a; stroke-width: 1.4; }
+      .io  { fill: #eceff1; stroke: #455a64; stroke-width: 1.4; }
+      .off { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 1.4; }
+      .w   { stroke: #333; stroke-width: 1.5; fill: none; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="740" fill="#ffffff"/>
+  <text x="20" y="30" class="h">Lane Centering Assist (LCA) – Tiny CNN on Basys3: System Block Diagram</text>
+  <text x="20" y="48" class="s">64×32 grayscale road image → Conv3×3×4 → ReLU → MaxPool2×2 → FC 1860→3 → Argmax → LEFT / STRAIGHT / RIGHT · single 100 MHz clock domain</text>
+
+  <!-- ===== Board inputs ===== -->
+  <text x="20" y="80" class="t">Basys3 inputs</text>
+  <rect x="20" y="90" width="135" height="36" rx="6" class="io"/><text x="30" y="106" class="t">CLK 100 MHz</text><text x="30" y="119" class="s">pin W5</text>
+  <rect x="20" y="138" width="135" height="36" rx="6" class="io"/><text x="30" y="154" class="t">SW[3:0]</text><text x="30" y="167" class="s">image select 0–15</text>
+  <rect x="20" y="186" width="135" height="36" rx="6" class="io"/><text x="30" y="202" class="t">SW[14] / SW[13]</text><text x="30" y="215" class="s">result / cycles · cycle page</text>
+  <rect x="20" y="234" width="135" height="36" rx="6" class="io"/><text x="30" y="250" class="t">BTNC / BTNU</text><text x="30" y="263" class="s">start / reset</text>
+  <rect x="20" y="290" width="135" height="40" rx="6" class="ctl"/><text x="30" y="307" class="t">btn_debounce ×2</text><text x="30" y="321" class="s">2-FF sync + pulse</text>
+  <path d="M87,270 L87,290" class="w" marker-end="url(#a)"/>
+
+  <!-- ===== cnn_core ===== -->
+  <rect x="185" y="66" width="745" height="410" rx="10" fill="#fafafa" stroke="#888" stroke-dasharray="6 4"/>
+  <text x="200" y="86" class="t">cnn_core</text>
+
+  <rect x="200" y="96" width="715" height="48" rx="6" class="ctl"/>
+  <text x="212" y="115" class="t">cnn_ctrl: main FSM</text>
+  <text x="212" y="132" class="s">IDLE → CONV → POOL → FC → ARGMAX → DONE · latches img_sel · cycle counter</text>
+
+  <!-- inputs into ctrl -->
+  <path d="M155,156 L185,156 L185,120 L200,120" class="w" marker-end="url(#a)"/>
+  <path d="M155,310 L170,310 L170,132 L200,132" class="w" marker-end="url(#a)"/>
+
+  <!-- control lines -->
+  <g stroke="#6a1b9a" stroke-width="1.2" stroke-dasharray="4 3" fill="none">
+    <path d="M346,144 L346,232" marker-end="url(#p)"/>
+    <path d="M552,144 L552,232" marker-end="url(#p)"/>
+    <path d="M758,144 L758,232" marker-end="url(#p)"/>
+    <path d="M861,144 L861,232" marker-end="url(#p)"/>
+  </g>
+  <text x="352" y="190" class="s" fill="#6a1b9a">start / done</text>
+  <text x="558" y="190" class="s" fill="#6a1b9a">start / done</text>
+  <text x="764" y="190" class="s" fill="#6a1b9a">start / done</text>
+
+  <!-- pipeline row -->
+  <rect x="200" y="234" width="88" height="78" rx="6" class="mem"/>
+  <text x="208" y="254" class="t">image_rom</text><text x="208" y="270" class="s">16 × 2048 B</text><text x="208" y="284" class="s">32768×8</text><text x="208" y="298" class="s">8× RAMB36</text>
+
+  <rect x="303" y="234" width="88" height="78" rx="6" class="cmp"/>
+  <text x="311" y="254" class="t">conv_engine</text><text x="311" y="270" class="s">3×3, 4 filters</text><text x="311" y="284" class="s">1 MAC (DSP)</text><text x="311" y="298" class="s">ReLU + requant</text>
+
+  <rect x="406" y="234" width="88" height="78" rx="6" class="mem"/>
+  <text x="414" y="254" class="t">fmap_ram</text><text x="414" y="270" class="s">4×30×62</text><text x="414" y="284" class="s">7440×8</text><text x="414" y="298" class="s">2× RAMB36</text>
+
+  <rect x="509" y="234" width="88" height="78" rx="6" class="cmp"/>
+  <text x="517" y="254" class="t">maxpool</text><text x="517" y="270" class="s">2×2, stride 2</text><text x="517" y="284" class="s">max of 4</text>
+
+  <rect x="612" y="234" width="88" height="78" rx="6" class="mem"/>
+  <text x="620" y="254" class="t">pool_ram</text><text x="620" y="270" class="s">4×15×31</text><text x="620" y="284" class="s">1860×8</text><text x="620" y="298" class="s">RAMB18</text>
+
+  <rect x="715" y="234" width="88" height="78" rx="6" class="cmp"/>
+  <text x="723" y="254" class="t">fc_engine</text><text x="723" y="270" class="s">1860 → 3</text><text x="723" y="284" class="s">1 MAC (DSP)</text><text x="723" y="298" class="s">int32 logits</text>
+
+  <rect x="818" y="234" width="88" height="78" rx="6" class="cmp"/>
+  <text x="826" y="254" class="t">argmax3</text><text x="826" y="270" class="s">signed cmp</text><text x="826" y="284" class="s">tie → low idx</text><text x="826" y="298" class="s">class_id[1:0]</text>
+
+  <g class="w">
+    <path d="M288,273 L303,273" marker-end="url(#a)"/>
+    <path d="M391,273 L406,273" marker-end="url(#a)"/>
+    <path d="M494,273 L509,273" marker-end="url(#a)"/>
+    <path d="M597,273 L612,273" marker-end="url(#a)"/>
+    <path d="M700,273 L715,273" marker-end="url(#a)"/>
+    <path d="M803,273 L818,273" marker-end="url(#a)"/>
+  </g>
+  <text x="290" y="330" class="s">u8 pixels</text>
+  <text x="440" y="330" class="s">u7 activations</text>
+  <text x="640" y="330" class="s">u7 (flatten c,y,x)</text>
+  <text x="790" y="330" class="s">3 × int32</text>
+
+  <!-- weight roms -->
+  <rect x="303" y="370" width="88" height="62" rx="6" class="mem"/>
+  <text x="311" y="390" class="t">conv_w_rom</text><text x="311" y="405" class="s">36 × int8 w</text><text x="311" y="419" class="s">4 × int32 b</text>
+  <path d="M347,370 L347,312" class="w" marker-end="url(#a)"/>
+
+  <rect x="715" y="370" width="88" height="62" rx="6" class="mem"/>
+  <text x="723" y="390" class="t">fc_w_rom</text><text x="723" y="405" class="s">5580 × int8 w</text><text x="723" y="419" class="s">3 × int32 b</text>
+  <path d="M759,370 L759,312" class="w" marker-end="url(#a)"/>
+
+  <text x="420" y="400" class="s">All engines: 1-cycle BRAM read latency, start/done handshake.</text>
+  <text x="420" y="415" class="s">Measured: 117,192 cycles = 1.17 ms per image at 100 MHz.</text>
+
+  <!-- ===== Outputs ===== -->
+  <text x="955" y="80" class="t">Display &amp; board outputs</text>
+
+  <rect x="955" y="96" width="225" height="44" rx="6" class="mem"/>
+  <text x="965" y="114" class="t">label_rom</text><text x="965" y="129" class="s">16 × 2-bit expected class → PASS / FAIL</text>
+
+  <rect x="955" y="234" width="225" height="62" rx="6" class="ctl"/>
+  <text x="965" y="253" class="t">result_display</text><text x="965" y="268" class="s">class → position bar, LF / St / rt</text><text x="965" y="283" class="s">PASS / FAIL / BUSY / DONE</text>
+
+  <rect x="955" y="318" width="225" height="44" rx="6" class="ctl"/>
+  <text x="965" y="336" class="t">seg7_mux</text><text x="965" y="351" class="s">4 digits, ~1 kHz refresh</text>
+
+  <rect x="955" y="436" width="225" height="40" rx="6" class="io"/>
+  <text x="965" y="453" class="t">LED[15:0]</text><text x="965" y="467" class="s">15–13 LEFT · 8–7 STRAIGHT · 2–0 RIGHT</text>
+
+  <rect x="955" y="384" width="225" height="40" rx="6" class="io"/>
+  <text x="965" y="401" class="t">7-segment ×4</text><text x="965" y="415" class="s">img# · class, or 20-bit cycle count (SW[14])</text>
+
+  <g class="w">
+    <path d="M906,265 L955,265" marker-end="url(#a)"/>
+    <path d="M1067,140 L1067,234" marker-end="url(#a)"/>
+    <path d="M1067,296 L1067,318" marker-end="url(#a)"/>
+    <path d="M1180,280 L1192,280 L1192,456 L1180,456" marker-end="url(#a)"/>
+    <path d="M1067,362 L1067,384" marker-end="url(#a)"/>
+    <path d="M915,132 L936,132 L936,340 L955,340" marker-end="url(#a)"/>
+  </g>
+  <text x="878" y="158" class="s">cycle_count</text>
+  <text x="910" y="258" class="s">class</text>
+
+  <!-- ===== Offline flow ===== -->
+  <rect x="20" y="510" width="1160" height="210" rx="10" fill="#f9fdf9" stroke="#2e7d32" stroke-dasharray="6 4"/>
+  <text x="36" y="532" class="t" fill="#2e7d32">Offline on PC (Python): runs before synthesis, never on the FPGA</text>
+
+  <rect x="36" y="550" width="170" height="70" rx="6" class="off"/>
+  <text x="46" y="570" class="t">Dataset</text><text x="46" y="586" class="s">TuSimple frames + lane JSON</text>
+
+  <rect x="236" y="550" width="180" height="70" rx="6" class="off"/>
+  <text x="246" y="570" class="t">Preprocess + label</text><text x="246" y="586" class="s">crop rows 320–719, gray,</text><text x="246" y="600" class="s">64×32 · offset, T = 0.15 → L / S / R</text>
+
+  <rect x="446" y="550" width="170" height="70" rx="6" class="off"/>
+  <text x="456" y="570" class="t">Train (fixed point)</text><text x="456" y="586" class="s">same CNN topology</text><text x="456" y="600" class="s">split by blocks of clips</text>
+
+  <rect x="646" y="550" width="200" height="70" rx="6" class="off"/>
+  <text x="656" y="570" class="t">Quantize + golden model</text><text x="656" y="586" class="s">int8 weights, 2ⁿ shifts</text><text x="656" y="600" class="s">integer-only = the spec</text>
+
+  <rect x="876" y="550" width="290" height="70" rx="6" class="off"/>
+  <text x="886" y="570" class="t">Export .mem</text><text x="886" y="586" class="s">test_images · conv_weight/bias · fc_weight/bias · test_labels</text><text x="886" y="600" class="s">golden dumps: conv / pool / logits / class</text>
+
+  <g stroke="#2e7d32" stroke-width="1.5" fill="none">
+    <path d="M206,585 L236,585" marker-end="url(#g)"/>
+    <path d="M416,585 L446,585" marker-end="url(#g)"/>
+    <path d="M616,585 L646,585" marker-end="url(#g)"/>
+    <path d="M846,585 L876,585" marker-end="url(#g)"/>
+  </g>
+
+  <g stroke="#2e7d32" stroke-width="1.5" stroke-dasharray="5 4" fill="none">
+    <path d="M1000,550 L1000,500 L244,500 L244,312" marker-end="url(#g)"/>
+    <path d="M1000,500 L347,500 L347,432" marker-end="url(#g)"/>
+    <path d="M1000,500 L759,500 L759,432" marker-end="url(#g)"/>
+    <path d="M1000,500 L946,500 L946,118 L955,118" marker-end="url(#g)"/>
+  </g>
+  <text x="560" y="494" class="s" fill="#2e7d32">$readmemh at synthesis → contents baked into the bitstream</text>
+
+  <rect x="36" y="640" width="1130" height="66" rx="6" fill="#ffffff" stroke="#2e7d32"/>
+  <text x="46" y="660" class="t">Verification link</text>
+  <text x="46" y="678" class="s">The same golden dumps feed the self-checking testbenches: conv_engine vs conv dump, maxpool vs pool dump, fc_engine vs logits dump, full system vs class.</text>
+  <text x="46" y="694" class="s">Pass criterion: bit-exact match at every stage for every test image. The board shows PASS/FAIL against label_rom.</text>
+</svg>

@@ -1,0 +1,19 @@
+build    B01
+date     2026-11-04 11:02
+commit   2583f6a (day5/synthesis)
+dirty    built from 5fecd9a plus the uncommitted mem/ fix (test_images.mem unpacked to
+         one pixel per line, test_labels.mem renamed); that fix was committed unchanged
+         as 2583f6a, and hw/ is identical in both, so 2583f6a reproduces this build
+vivado   2026.1
+top      top_basys3
+generic  (none; USE_STUB = 0, real cnn_core)
+WNS      -0.259 ns
+TNS      -2.059 ns (16 failing endpoints)
+WHS      0.096 ns
+LUT      652
+FF       405
+BRAM     12.5 tiles (12 RAMB36 + 1 RAMB18)
+DSP      0
+note     archived by hand after the fact: the synthesis log, DRC report and full
+         implementation were overwritten by a bringup_top build at 11:17, so
+         synth_warnings.txt, drc.txt and utilization_hier.txt are missing

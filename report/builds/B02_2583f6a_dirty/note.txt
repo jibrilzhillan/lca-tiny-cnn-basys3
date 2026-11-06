@@ -1,0 +1,4 @@
+B02 is a bringup_top build (H0 board test), not the CNN. It was made by create_project.tcl
+while its default top was still bringup_top. Its project was then switched to top_basys3
+in the GUI and built without the quant config (S1 = -1); that bitstream was never archived.
+See docs/bug_log.md M5-002.

@@ -1,0 +1,37 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Wed Nov  4 15:23:13 2026
+| Host         : LAPTOP-51JVJTTC running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file <repo>/report/builds/B05_e1fc44c/utilization_hier.txt
+| Design       : top_basys3
+| Device       : xc7a35tcpg236-1
+| Speed File   : -1
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-------------------+----------------+------------+------------+---------+------+-----+--------+--------+------------+
+|      Instance     |     Module     | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP Blocks |
++-------------------+----------------+------------+------------+---------+------+-----+--------+--------+------------+
+| top_basys3        |          (top) |        429 |        429 |       0 |    0 | 364 |     12 |      1 |          2 |
+|   (top_basys3)    |          (top) |          4 |          4 |       0 |    0 |  20 |      0 |      0 |          0 |
+|   gen_core.u_core |       cnn_core |        390 |        390 |       0 |    0 | 249 |     12 |      1 |          2 |
+|     u_pool        | maxpool_engine |         85 |         85 |       0 |    0 |  43 |      0 |      0 |          0 |
+|     u_conv        |    conv_engine |        103 |        103 |       0 |    0 |  22 |      0 |      0 |          1 |
+|       (u_conv)    |    conv_engine |         58 |         58 |       0 |    0 |  22 |      0 |      0 |          0 |
+|     u_ctrl        |       cnn_ctrl |         67 |         67 |       0 |    0 |  31 |      0 |      0 |          0 |
+|     u_fc          |      fc_engine |        129 |        129 |       0 |    0 | 149 |      2 |      0 |          1 |
+|       (u_fc)      |      fc_engine |        123 |        123 |       0 |    0 | 145 |      0 |      0 |          1 |
++-------------------+----------------+------------+------------+---------+------+-----+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

@@ -1,0 +1,909 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Wed Nov  4 12:41:07 2026
+| Host         : LAPTOP-51JVJTTC running 64-bit major release  (build 9200)
+| Command      : report_timing -max_paths 10 -sort_by slack -file <repo>/report/builds/B03_2583f6a_dirty/critical_paths.txt
+| Design       : top_basys3
+| Device       : 7a35t-cpg236
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -0.259ns  (required time - arrival time)
+  Source:                 gen_core.u_core/u_fc/fc_w_rom/data_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            gen_core.u_core/u_fc/accum_reg[31]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        10.186ns  (logic 6.205ns (60.917%)  route 3.981ns (39.083%))
+  Logic Levels:           14  (CARRY4=9 LUT2=1 LUT3=1 LUT6=3)
+  Clock Path Skew:        -0.068ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.779ns = ( 14.779 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.121ns
+    Clock Pessimism Removal (CPR):    0.273ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  <hidden>
+    W5                                                0.000     0.000 r  clk
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.600     5.121    gen_core.u_core/u_fc/fc_w_rom/clk
+    RAMB36_X2Y5          RAMB36E1                                     r  gen_core.u_core/u_fc/fc_w_rom/data_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X2Y5          RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[1])
+                                                      2.454     7.575 r  gen_core.u_core/u_fc/fc_w_rom/data_reg_0/DOADO[1]
+                         net (fo=18, routed)          1.445     9.020    gen_core.u_core/pool_ram/out[1]
+    SLICE_X58Y21         LUT6 (Prop_lut6_I3_O)        0.124     9.144 r  gen_core.u_core/pool_ram/product__0_carry__0_i_4__0/O
+                         net (fo=2, routed)           0.570     9.713    gen_core.u_core/pool_ram/DI[0]
+    SLICE_X58Y19         LUT6 (Prop_lut6_I0_O)        0.124     9.837 r  gen_core.u_core/pool_ram/product__0_carry__0_i_8__0/O
+                         net (fo=1, routed)           0.000     9.837    gen_core.u_core/u_fc/S[0]
+    SLICE_X58Y19         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    10.369 r  gen_core.u_core/u_fc/product__0_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    10.369    gen_core.u_core/u_fc/product__0_carry__0_n_0
+    SLICE_X58Y20         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.608 r  gen_core.u_core/u_fc/product__0_carry__1/O[2]
+                         net (fo=2, routed)           1.006    11.615    gen_core.u_core/u_fc/fc_w_rom/product__89_carry__0_1[2]
+    SLICE_X59Y20         LUT6 (Prop_lut6_I1_O)        0.302    11.917 r  gen_core.u_core/u_fc/fc_w_rom/product__89_carry__0_i_6__0_comp/O
+                         net (fo=1, routed)           0.000    11.917    gen_core.u_core/u_fc/fc_w_rom_n_33
+    SLICE_X59Y20         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.398    12.315 r  gen_core.u_core/u_fc/product__89_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    12.315    gen_core.u_core/u_fc/product__89_carry__0_n_0
+    SLICE_X59Y21         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.429 r  gen_core.u_core/u_fc/product__89_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    12.429    gen_core.u_core/u_fc/product__89_carry__1_n_0
+    SLICE_X59Y22         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.651 r  gen_core.u_core/u_fc/product__89_carry__2/O[0]
+                         net (fo=4, routed)           0.656    13.307    gen_core.u_core/u_fc/fc_w_rom/O[0]
+    SLICE_X57Y22         LUT2 (Prop_lut2_I0_O)        0.299    13.606 r  gen_core.u_core/u_fc/fc_w_rom/accum0_carry__3_i_4/O
+                         net (fo=1, routed)           0.000    13.606    gen_core.u_core/u_fc/fc_w_rom_n_15
+    SLICE_X57Y22         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    14.156 r  gen_core.u_core/u_fc/accum0_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    14.156    gen_core.u_core/u_fc/accum0_carry__3_n_0
+    SLICE_X57Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.270 r  gen_core.u_core/u_fc/accum0_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    14.270    gen_core.u_core/u_fc/accum0_carry__4_n_0
+    SLICE_X57Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.384 r  gen_core.u_core/u_fc/accum0_carry__5/CO[3]
+                         net (fo=1, routed)           0.009    14.393    gen_core.u_core/u_fc/accum0_carry__5_n_0
+    SLICE_X57Y25         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.313    14.706 r  gen_core.u_core/u_fc/accum0_carry__6/O[3]
+                         net (fo=1, routed)           0.295    15.001    gen_core.u_core/u_fc/accum0[31]
+    SLICE_X57Y26         LUT3 (Prop_lut3_I2_O)        0.306    15.307 r  gen_core.u_core/u_fc/accum[31]_i_2/O
+                         net (fo=1, routed)           0.000    15.307    gen_core.u_core/u_fc/accum0_in[31]
+    SLICE_X57Y26         FDRE                                         r  gen_core.u_core/u_fc/accum_reg[31]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  <hidden>
+    W5                                                0.000    10.000 r  clk
+                         net (fo=0)                   0.000    10.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.438    14.779    gen_core.u_core/u_fc/clk
+    SLICE_X57Y26         FDRE                                         r  gen_core.u_core/u_fc/accum_reg[31]/C
+                         clock pessimism              0.273    15.052    <hidden>
+                         clock uncertainty           -0.035    15.017    <hidden>
+    SLICE_X57Y26         FDRE (Setup_fdre_C_D)        0.031    15.048    gen_core.u_core/u_fc/accum_reg[31]
+  -------------------------------------------------------------------
+                         required time                         15.048    <hidden>
+                         arrival time                         -15.307    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -0.259    <hidden>
+
+Slack (VIOLATED) :        -0.239ns  (required time - arrival time)
+  Source:                 gen_core.u_core/u_fc/fc_w_rom/data_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            gen_core.u_core/u_fc/accum_reg[29]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        10.216ns  (logic 6.223ns (60.912%)  route 3.993ns (39.088%))
+  Logic Levels:           14  (CARRY4=9 LUT2=1 LUT3=1 LUT6=3)
+  Clock Path Skew:        -0.068ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.779ns = ( 14.779 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.121ns
+    Clock Pessimism Removal (CPR):    0.273ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  <hidden>
+    W5                                                0.000     0.000 r  clk
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.600     5.121    gen_core.u_core/u_fc/fc_w_rom/clk
+    RAMB36_X2Y5          RAMB36E1                                     r  gen_core.u_core/u_fc/fc_w_rom/data_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X2Y5          RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[1])
+                                                      2.454     7.575 r  gen_core.u_core/u_fc/fc_w_rom/data_reg_0/DOADO[1]
+                         net (fo=18, routed)          1.445     9.020    gen_core.u_core/pool_ram/out[1]
+    SLICE_X58Y21         LUT6 (Prop_lut6_I3_O)        0.124     9.144 r  gen_core.u_core/pool_ram/product__0_carry__0_i_4__0/O
+                         net (fo=2, routed)           0.570     9.713    gen_core.u_core/pool_ram/DI[0]
+    SLICE_X58Y19         LUT6 (Prop_lut6_I0_O)        0.124     9.837 r  gen_core.u_core/pool_ram/product__0_carry__0_i_8__0/O
+                         net (fo=1, routed)           0.000     9.837    gen_core.u_core/u_fc/S[0]
+    SLICE_X58Y19         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    10.369 r  gen_core.u_core/u_fc/product__0_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    10.369    gen_core.u_core/u_fc/product__0_carry__0_n_0
+    SLICE_X58Y20         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.608 r  gen_core.u_core/u_fc/product__0_carry__1/O[2]
+                         net (fo=2, routed)           1.006    11.615    gen_core.u_core/u_fc/fc_w_rom/product__89_carry__0_1[2]
+    SLICE_X59Y20         LUT6 (Prop_lut6_I1_O)        0.302    11.917 r  gen_core.u_core/u_fc/fc_w_rom/product__89_carry__0_i_6__0_comp/O
+                         net (fo=1, routed)           0.000    11.917    gen_core.u_core/u_fc/fc_w_rom_n_33
+    SLICE_X59Y20         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.398    12.315 r  gen_core.u_core/u_fc/product__89_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    12.315    gen_core.u_core/u_fc/product__89_carry__0_n_0
+    SLICE_X59Y21         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.429 r  gen_core.u_core/u_fc/product__89_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    12.429    gen_core.u_core/u_fc/product__89_carry__1_n_0
+    SLICE_X59Y22         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.651 r  gen_core.u_core/u_fc/product__89_carry__2/O[0]
+                         net (fo=4, routed)           0.656    13.307    gen_core.u_core/u_fc/fc_w_rom/O[0]
+    SLICE_X57Y22         LUT2 (Prop_lut2_I0_O)        0.299    13.606 r  gen_core.u_core/u_fc/fc_w_rom/accum0_carry__3_i_4/O
+                         net (fo=1, routed)           0.000    13.606    gen_core.u_core/u_fc/fc_w_rom_n_15
+    SLICE_X57Y22         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    14.156 r  gen_core.u_core/u_fc/accum0_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    14.156    gen_core.u_core/u_fc/accum0_carry__3_n_0
+    SLICE_X57Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.270 r  gen_core.u_core/u_fc/accum0_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    14.270    gen_core.u_core/u_fc/accum0_carry__4_n_0
+    SLICE_X57Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.384 r  gen_core.u_core/u_fc/accum0_carry__5/CO[3]
+                         net (fo=1, routed)           0.009    14.393    gen_core.u_core/u_fc/accum0_carry__5_n_0
+    SLICE_X57Y25         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    14.727 r  gen_core.u_core/u_fc/accum0_carry__6/O[1]
+                         net (fo=1, routed)           0.307    15.034    gen_core.u_core/u_fc/accum0[29]
+    SLICE_X56Y26         LUT3 (Prop_lut3_I2_O)        0.303    15.337 r  gen_core.u_core/u_fc/accum[29]_i_1/O
+                         net (fo=1, routed)           0.000    15.337    gen_core.u_core/u_fc/accum0_in[29]
+    SLICE_X56Y26         FDRE                                         r  gen_core.u_core/u_fc/accum_reg[29]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  <hidden>
+    W5                                                0.000    10.000 r  clk
+                         net (fo=0)                   0.000    10.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.438    14.779    gen_core.u_core/u_fc/clk
+    SLICE_X56Y26         FDRE                                         r  gen_core.u_core/u_fc/accum_reg[29]/C
+                         clock pessimism              0.273    15.052    <hidden>
+                         clock uncertainty           -0.035    15.017    <hidden>
+    SLICE_X56Y26         FDRE (Setup_fdre_C_D)        0.081    15.098    gen_core.u_core/u_fc/accum_reg[29]
+  -------------------------------------------------------------------
+                         required time                         15.098    <hidden>
+                         arrival time                         -15.337    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -0.239    <hidden>
+
+Slack (VIOLATED) :        -0.210ns  (required time - arrival time)
+  Source:                 gen_core.u_core/image_rom/data_reg_0_2/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            gen_core.u_core/u_conv/u_mac/acc_reg[21]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        10.153ns  (logic 5.744ns (56.576%)  route 4.409ns (43.425%))
+  Logic Levels:           11  (CARRY4=7 LUT4=3 LUT6=1)
+  Clock Path Skew:        -0.083ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.785ns = ( 14.785 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.129ns
+    Clock Pessimism Removal (CPR):    0.260ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  <hidden>
+    W5                                                0.000     0.000 r  clk
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.608     5.129    gen_core.u_core/image_rom/clk
+    RAMB36_X1Y2          RAMB36E1                                     r  gen_core.u_core/image_rom/data_reg_0_2/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X1Y2          RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[0])
+                                                      2.454     7.583 r  gen_core.u_core/image_rom/data_reg_0_2/DOADO[0]
+                         net (fo=17, routed)          1.126     8.709    gen_core.u_core/image_rom/out[2]
+    SLICE_X51Y5          LUT6 (Prop_lut6_I4_O)        0.124     8.833 r  gen_core.u_core/image_rom/product__0_carry__0_i_4/O
+                         net (fo=2, routed)           0.850     9.684    gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_8_0[0]
+    SLICE_X49Y14         CARRY4 (Prop_carry4_DI[0]_O[2])
+                                                      0.556    10.240 r  gen_core.u_core/u_conv/u_multiplier/product__0_carry__0/O[2]
+                         net (fo=2, routed)           0.809    11.049    gen_core.u_core/u_conv/u_multiplier/product__0_carry__0_n_5
+    SLICE_X50Y14         LUT4 (Prop_lut4_I0_O)        0.331    11.380 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_1/O
+                         net (fo=2, routed)           0.679    12.059    gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_1_n_0
+    SLICE_X50Y14         LUT4 (Prop_lut4_I3_O)        0.331    12.390 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_5/O
+                         net (fo=1, routed)           0.000    12.390    gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_5_n_0
+    SLICE_X50Y14         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    12.766 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry/CO[3]
+                         net (fo=1, routed)           0.000    12.766    gen_core.u_core/u_conv/u_multiplier/product__89_carry_n_0
+    SLICE_X50Y15         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.883 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    12.883    gen_core.u_core/u_conv/u_multiplier/product__89_carry__0_n_0
+    SLICE_X50Y16         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315    13.198 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry__1/O[3]
+                         net (fo=2, routed)           0.324    13.523    gen_core.u_core/u_conv/u_multiplier/B[15]
+    SLICE_X49Y16         LUT4 (Prop_lut4_I0_O)        0.307    13.830 r  gen_core.u_core/u_conv/u_multiplier/acc[12]_i_2/O
+                         net (fo=1, routed)           0.619    14.449    gen_core.u_core/u_conv/u_multiplier/acc[12]_i_2_n_0
+    SLICE_X51Y15         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    14.834 r  gen_core.u_core/u_conv/u_multiplier/acc_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.000    14.834    gen_core.u_core/u_conv/u_multiplier/acc_reg[12]_i_1_n_0
+    SLICE_X51Y16         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.948 r  gen_core.u_core/u_conv/u_multiplier/acc_reg[16]_i_1/CO[3]
+                         net (fo=1, routed)           0.000    14.948    gen_core.u_core/u_conv/u_multiplier/acc_reg[16]_i_1_n_0
+    SLICE_X51Y17         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    15.282 r  gen_core.u_core/u_conv/u_multiplier/acc_reg[20]_i_1/O[1]
+                         net (fo=1, routed)           0.000    15.282    gen_core.u_core/u_conv/u_mac/acc_reg[23]_0[1]
+    SLICE_X51Y17         FDRE                                         r  gen_core.u_core/u_conv/u_mac/acc_reg[21]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  <hidden>
+    W5                                                0.000    10.000 r  clk
+                         net (fo=0)                   0.000    10.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.444    14.785    gen_core.u_core/u_conv/u_mac/clk
+    SLICE_X51Y17         FDRE                                         r  gen_core.u_core/u_conv/u_mac/acc_reg[21]/C
+                         clock pessimism              0.260    15.045    <hidden>
+                         clock uncertainty           -0.035    15.010    <hidden>
+    SLICE_X51Y17         FDRE (Setup_fdre_C_D)        0.062    15.072    gen_core.u_core/u_conv/u_mac/acc_reg[21]
+  -------------------------------------------------------------------
+                         required time                         15.072    <hidden>
+                         arrival time                         -15.282    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -0.210    <hidden>
+
+Slack (VIOLATED) :        -0.189ns  (required time - arrival time)
+  Source:                 gen_core.u_core/image_rom/data_reg_0_2/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            gen_core.u_core/u_conv/u_mac/acc_reg[23]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        10.132ns  (logic 5.723ns (56.486%)  route 4.409ns (43.515%))
+  Logic Levels:           11  (CARRY4=7 LUT4=3 LUT6=1)
+  Clock Path Skew:        -0.083ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.785ns = ( 14.785 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.129ns
+    Clock Pessimism Removal (CPR):    0.260ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  <hidden>
+    W5                                                0.000     0.000 r  clk
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.608     5.129    gen_core.u_core/image_rom/clk
+    RAMB36_X1Y2          RAMB36E1                                     r  gen_core.u_core/image_rom/data_reg_0_2/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X1Y2          RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[0])
+                                                      2.454     7.583 r  gen_core.u_core/image_rom/data_reg_0_2/DOADO[0]
+                         net (fo=17, routed)          1.126     8.709    gen_core.u_core/image_rom/out[2]
+    SLICE_X51Y5          LUT6 (Prop_lut6_I4_O)        0.124     8.833 r  gen_core.u_core/image_rom/product__0_carry__0_i_4/O
+                         net (fo=2, routed)           0.850     9.684    gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_8_0[0]
+    SLICE_X49Y14         CARRY4 (Prop_carry4_DI[0]_O[2])
+                                                      0.556    10.240 r  gen_core.u_core/u_conv/u_multiplier/product__0_carry__0/O[2]
+                         net (fo=2, routed)           0.809    11.049    gen_core.u_core/u_conv/u_multiplier/product__0_carry__0_n_5
+    SLICE_X50Y14         LUT4 (Prop_lut4_I0_O)        0.331    11.380 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_1/O
+                         net (fo=2, routed)           0.679    12.059    gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_1_n_0
+    SLICE_X50Y14         LUT4 (Prop_lut4_I3_O)        0.331    12.390 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_5/O
+                         net (fo=1, routed)           0.000    12.390    gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_5_n_0
+    SLICE_X50Y14         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    12.766 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry/CO[3]
+                         net (fo=1, routed)           0.000    12.766    gen_core.u_core/u_conv/u_multiplier/product__89_carry_n_0
+    SLICE_X50Y15         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.883 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    12.883    gen_core.u_core/u_conv/u_multiplier/product__89_carry__0_n_0
+    SLICE_X50Y16         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315    13.198 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry__1/O[3]
+                         net (fo=2, routed)           0.324    13.523    gen_core.u_core/u_conv/u_multiplier/B[15]
+    SLICE_X49Y16         LUT4 (Prop_lut4_I0_O)        0.307    13.830 r  gen_core.u_core/u_conv/u_multiplier/acc[12]_i_2/O
+                         net (fo=1, routed)           0.619    14.449    gen_core.u_core/u_conv/u_multiplier/acc[12]_i_2_n_0
+    SLICE_X51Y15         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    14.834 r  gen_core.u_core/u_conv/u_multiplier/acc_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.000    14.834    gen_core.u_core/u_conv/u_multiplier/acc_reg[12]_i_1_n_0
+    SLICE_X51Y16         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.948 r  gen_core.u_core/u_conv/u_multiplier/acc_reg[16]_i_1/CO[3]
+                         net (fo=1, routed)           0.000    14.948    gen_core.u_core/u_conv/u_multiplier/acc_reg[16]_i_1_n_0
+    SLICE_X51Y17         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.313    15.261 r  gen_core.u_core/u_conv/u_multiplier/acc_reg[20]_i_1/O[3]
+                         net (fo=1, routed)           0.000    15.261    gen_core.u_core/u_conv/u_mac/acc_reg[23]_0[3]
+    SLICE_X51Y17         FDRE                                         r  gen_core.u_core/u_conv/u_mac/acc_reg[23]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  <hidden>
+    W5                                                0.000    10.000 r  clk
+                         net (fo=0)                   0.000    10.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.444    14.785    gen_core.u_core/u_conv/u_mac/clk
+    SLICE_X51Y17         FDRE                                         r  gen_core.u_core/u_conv/u_mac/acc_reg[23]/C
+                         clock pessimism              0.260    15.045    <hidden>
+                         clock uncertainty           -0.035    15.010    <hidden>
+    SLICE_X51Y17         FDRE (Setup_fdre_C_D)        0.062    15.072    gen_core.u_core/u_conv/u_mac/acc_reg[23]
+  -------------------------------------------------------------------
+                         required time                         15.072    <hidden>
+                         arrival time                         -15.261    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -0.189    <hidden>
+
+Slack (VIOLATED) :        -0.186ns  (required time - arrival time)
+  Source:                 gen_core.u_core/u_fc/fc_w_rom/data_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            gen_core.u_core/u_fc/accum_reg[30]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        10.148ns  (logic 6.127ns (60.374%)  route 4.021ns (39.626%))
+  Logic Levels:           14  (CARRY4=9 LUT2=1 LUT3=1 LUT6=3)
+  Clock Path Skew:        -0.083ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.777ns = ( 14.777 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.121ns
+    Clock Pessimism Removal (CPR):    0.260ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  <hidden>
+    W5                                                0.000     0.000 r  clk
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.600     5.121    gen_core.u_core/u_fc/fc_w_rom/clk
+    RAMB36_X2Y5          RAMB36E1                                     r  gen_core.u_core/u_fc/fc_w_rom/data_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X2Y5          RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[1])
+                                                      2.454     7.575 r  gen_core.u_core/u_fc/fc_w_rom/data_reg_0/DOADO[1]
+                         net (fo=18, routed)          1.445     9.020    gen_core.u_core/pool_ram/out[1]
+    SLICE_X58Y21         LUT6 (Prop_lut6_I3_O)        0.124     9.144 r  gen_core.u_core/pool_ram/product__0_carry__0_i_4__0/O
+                         net (fo=2, routed)           0.570     9.713    gen_core.u_core/pool_ram/DI[0]
+    SLICE_X58Y19         LUT6 (Prop_lut6_I0_O)        0.124     9.837 r  gen_core.u_core/pool_ram/product__0_carry__0_i_8__0/O
+                         net (fo=1, routed)           0.000     9.837    gen_core.u_core/u_fc/S[0]
+    SLICE_X58Y19         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    10.369 r  gen_core.u_core/u_fc/product__0_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    10.369    gen_core.u_core/u_fc/product__0_carry__0_n_0
+    SLICE_X58Y20         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.608 r  gen_core.u_core/u_fc/product__0_carry__1/O[2]
+                         net (fo=2, routed)           1.006    11.615    gen_core.u_core/u_fc/fc_w_rom/product__89_carry__0_1[2]
+    SLICE_X59Y20         LUT6 (Prop_lut6_I1_O)        0.302    11.917 r  gen_core.u_core/u_fc/fc_w_rom/product__89_carry__0_i_6__0_comp/O
+                         net (fo=1, routed)           0.000    11.917    gen_core.u_core/u_fc/fc_w_rom_n_33
+    SLICE_X59Y20         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.398    12.315 r  gen_core.u_core/u_fc/product__89_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    12.315    gen_core.u_core/u_fc/product__89_carry__0_n_0
+    SLICE_X59Y21         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.429 r  gen_core.u_core/u_fc/product__89_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    12.429    gen_core.u_core/u_fc/product__89_carry__1_n_0
+    SLICE_X59Y22         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.651 r  gen_core.u_core/u_fc/product__89_carry__2/O[0]
+                         net (fo=4, routed)           0.656    13.307    gen_core.u_core/u_fc/fc_w_rom/O[0]
+    SLICE_X57Y22         LUT2 (Prop_lut2_I0_O)        0.299    13.606 r  gen_core.u_core/u_fc/fc_w_rom/accum0_carry__3_i_4/O
+                         net (fo=1, routed)           0.000    13.606    gen_core.u_core/u_fc/fc_w_rom_n_15
+    SLICE_X57Y22         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    14.156 r  gen_core.u_core/u_fc/accum0_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    14.156    gen_core.u_core/u_fc/accum0_carry__3_n_0
+    SLICE_X57Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.270 r  gen_core.u_core/u_fc/accum0_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    14.270    gen_core.u_core/u_fc/accum0_carry__4_n_0
+    SLICE_X57Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.384 r  gen_core.u_core/u_fc/accum0_carry__5/CO[3]
+                         net (fo=1, routed)           0.009    14.393    gen_core.u_core/u_fc/accum0_carry__5_n_0
+    SLICE_X57Y25         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    14.632 r  gen_core.u_core/u_fc/accum0_carry__6/O[2]
+                         net (fo=1, routed)           0.335    14.967    gen_core.u_core/u_fc/accum0[30]
+    SLICE_X56Y24         LUT3 (Prop_lut3_I2_O)        0.302    15.269 r  gen_core.u_core/u_fc/accum[30]_i_1/O
+                         net (fo=1, routed)           0.000    15.269    gen_core.u_core/u_fc/accum0_in[30]
+    SLICE_X56Y24         FDRE                                         r  gen_core.u_core/u_fc/accum_reg[30]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  <hidden>
+    W5                                                0.000    10.000 r  clk
+                         net (fo=0)                   0.000    10.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.436    14.777    gen_core.u_core/u_fc/clk
+    SLICE_X56Y24         FDRE                                         r  gen_core.u_core/u_fc/accum_reg[30]/C
+                         clock pessimism              0.260    15.037    <hidden>
+                         clock uncertainty           -0.035    15.002    <hidden>
+    SLICE_X56Y24         FDRE (Setup_fdre_C_D)        0.081    15.083    gen_core.u_core/u_fc/accum_reg[30]
+  -------------------------------------------------------------------
+                         required time                         15.083    <hidden>
+                         arrival time                         -15.269    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -0.186    <hidden>
+
+Slack (VIOLATED) :        -0.162ns  (required time - arrival time)
+  Source:                 gen_core.u_core/u_fc/fc_w_rom/data_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            gen_core.u_core/u_fc/accum_reg[28]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        10.089ns  (logic 6.107ns (60.530%)  route 3.982ns (39.470%))
+  Logic Levels:           14  (CARRY4=9 LUT2=1 LUT3=1 LUT6=3)
+  Clock Path Skew:        -0.068ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.779ns = ( 14.779 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.121ns
+    Clock Pessimism Removal (CPR):    0.273ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  <hidden>
+    W5                                                0.000     0.000 r  clk
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.600     5.121    gen_core.u_core/u_fc/fc_w_rom/clk
+    RAMB36_X2Y5          RAMB36E1                                     r  gen_core.u_core/u_fc/fc_w_rom/data_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X2Y5          RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[1])
+                                                      2.454     7.575 r  gen_core.u_core/u_fc/fc_w_rom/data_reg_0/DOADO[1]
+                         net (fo=18, routed)          1.445     9.020    gen_core.u_core/pool_ram/out[1]
+    SLICE_X58Y21         LUT6 (Prop_lut6_I3_O)        0.124     9.144 r  gen_core.u_core/pool_ram/product__0_carry__0_i_4__0/O
+                         net (fo=2, routed)           0.570     9.713    gen_core.u_core/pool_ram/DI[0]
+    SLICE_X58Y19         LUT6 (Prop_lut6_I0_O)        0.124     9.837 r  gen_core.u_core/pool_ram/product__0_carry__0_i_8__0/O
+                         net (fo=1, routed)           0.000     9.837    gen_core.u_core/u_fc/S[0]
+    SLICE_X58Y19         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    10.369 r  gen_core.u_core/u_fc/product__0_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    10.369    gen_core.u_core/u_fc/product__0_carry__0_n_0
+    SLICE_X58Y20         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.608 r  gen_core.u_core/u_fc/product__0_carry__1/O[2]
+                         net (fo=2, routed)           1.006    11.615    gen_core.u_core/u_fc/fc_w_rom/product__89_carry__0_1[2]
+    SLICE_X59Y20         LUT6 (Prop_lut6_I1_O)        0.302    11.917 r  gen_core.u_core/u_fc/fc_w_rom/product__89_carry__0_i_6__0_comp/O
+                         net (fo=1, routed)           0.000    11.917    gen_core.u_core/u_fc/fc_w_rom_n_33
+    SLICE_X59Y20         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.398    12.315 r  gen_core.u_core/u_fc/product__89_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    12.315    gen_core.u_core/u_fc/product__89_carry__0_n_0
+    SLICE_X59Y21         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.429 r  gen_core.u_core/u_fc/product__89_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    12.429    gen_core.u_core/u_fc/product__89_carry__1_n_0
+    SLICE_X59Y22         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.651 r  gen_core.u_core/u_fc/product__89_carry__2/O[0]
+                         net (fo=4, routed)           0.656    13.307    gen_core.u_core/u_fc/fc_w_rom/O[0]
+    SLICE_X57Y22         LUT2 (Prop_lut2_I0_O)        0.299    13.606 r  gen_core.u_core/u_fc/fc_w_rom/accum0_carry__3_i_4/O
+                         net (fo=1, routed)           0.000    13.606    gen_core.u_core/u_fc/fc_w_rom_n_15
+    SLICE_X57Y22         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    14.156 r  gen_core.u_core/u_fc/accum0_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    14.156    gen_core.u_core/u_fc/accum0_carry__3_n_0
+    SLICE_X57Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.270 r  gen_core.u_core/u_fc/accum0_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    14.270    gen_core.u_core/u_fc/accum0_carry__4_n_0
+    SLICE_X57Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.384 r  gen_core.u_core/u_fc/accum0_carry__5/CO[3]
+                         net (fo=1, routed)           0.009    14.393    gen_core.u_core/u_fc/accum0_carry__5_n_0
+    SLICE_X57Y25         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    14.615 r  gen_core.u_core/u_fc/accum0_carry__6/O[0]
+                         net (fo=1, routed)           0.296    14.911    gen_core.u_core/u_fc/accum0[28]
+    SLICE_X57Y26         LUT3 (Prop_lut3_I2_O)        0.299    15.210 r  gen_core.u_core/u_fc/accum[28]_i_1/O
+                         net (fo=1, routed)           0.000    15.210    gen_core.u_core/u_fc/accum0_in[28]
+    SLICE_X57Y26         FDRE                                         r  gen_core.u_core/u_fc/accum_reg[28]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  <hidden>
+    W5                                                0.000    10.000 r  clk
+                         net (fo=0)                   0.000    10.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.438    14.779    gen_core.u_core/u_fc/clk
+    SLICE_X57Y26         FDRE                                         r  gen_core.u_core/u_fc/accum_reg[28]/C
+                         clock pessimism              0.273    15.052    <hidden>
+                         clock uncertainty           -0.035    15.017    <hidden>
+    SLICE_X57Y26         FDRE (Setup_fdre_C_D)        0.031    15.048    gen_core.u_core/u_fc/accum_reg[28]
+  -------------------------------------------------------------------
+                         required time                         15.048    <hidden>
+                         arrival time                         -15.210    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -0.162    <hidden>
+
+Slack (VIOLATED) :        -0.147ns  (required time - arrival time)
+  Source:                 gen_core.u_core/u_fc/fc_w_rom/data_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            gen_core.u_core/u_fc/accum_reg[25]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        10.120ns  (logic 6.109ns (60.368%)  route 4.011ns (39.632%))
+  Logic Levels:           13  (CARRY4=8 LUT2=1 LUT3=1 LUT6=3)
+  Clock Path Skew:        -0.070ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.777ns = ( 14.777 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.121ns
+    Clock Pessimism Removal (CPR):    0.273ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  <hidden>
+    W5                                                0.000     0.000 r  clk
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.600     5.121    gen_core.u_core/u_fc/fc_w_rom/clk
+    RAMB36_X2Y5          RAMB36E1                                     r  gen_core.u_core/u_fc/fc_w_rom/data_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X2Y5          RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[1])
+                                                      2.454     7.575 r  gen_core.u_core/u_fc/fc_w_rom/data_reg_0/DOADO[1]
+                         net (fo=18, routed)          1.445     9.020    gen_core.u_core/pool_ram/out[1]
+    SLICE_X58Y21         LUT6 (Prop_lut6_I3_O)        0.124     9.144 r  gen_core.u_core/pool_ram/product__0_carry__0_i_4__0/O
+                         net (fo=2, routed)           0.570     9.713    gen_core.u_core/pool_ram/DI[0]
+    SLICE_X58Y19         LUT6 (Prop_lut6_I0_O)        0.124     9.837 r  gen_core.u_core/pool_ram/product__0_carry__0_i_8__0/O
+                         net (fo=1, routed)           0.000     9.837    gen_core.u_core/u_fc/S[0]
+    SLICE_X58Y19         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    10.369 r  gen_core.u_core/u_fc/product__0_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    10.369    gen_core.u_core/u_fc/product__0_carry__0_n_0
+    SLICE_X58Y20         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.608 r  gen_core.u_core/u_fc/product__0_carry__1/O[2]
+                         net (fo=2, routed)           1.006    11.615    gen_core.u_core/u_fc/fc_w_rom/product__89_carry__0_1[2]
+    SLICE_X59Y20         LUT6 (Prop_lut6_I1_O)        0.302    11.917 r  gen_core.u_core/u_fc/fc_w_rom/product__89_carry__0_i_6__0_comp/O
+                         net (fo=1, routed)           0.000    11.917    gen_core.u_core/u_fc/fc_w_rom_n_33
+    SLICE_X59Y20         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.398    12.315 r  gen_core.u_core/u_fc/product__89_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    12.315    gen_core.u_core/u_fc/product__89_carry__0_n_0
+    SLICE_X59Y21         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.429 r  gen_core.u_core/u_fc/product__89_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    12.429    gen_core.u_core/u_fc/product__89_carry__1_n_0
+    SLICE_X59Y22         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.651 r  gen_core.u_core/u_fc/product__89_carry__2/O[0]
+                         net (fo=4, routed)           0.656    13.307    gen_core.u_core/u_fc/fc_w_rom/O[0]
+    SLICE_X57Y22         LUT2 (Prop_lut2_I0_O)        0.299    13.606 r  gen_core.u_core/u_fc/fc_w_rom/accum0_carry__3_i_4/O
+                         net (fo=1, routed)           0.000    13.606    gen_core.u_core/u_fc/fc_w_rom_n_15
+    SLICE_X57Y22         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    14.156 r  gen_core.u_core/u_fc/accum0_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    14.156    gen_core.u_core/u_fc/accum0_carry__3_n_0
+    SLICE_X57Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.270 r  gen_core.u_core/u_fc/accum0_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    14.270    gen_core.u_core/u_fc/accum0_carry__4_n_0
+    SLICE_X57Y24         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    14.604 r  gen_core.u_core/u_fc/accum0_carry__5/O[1]
+                         net (fo=1, routed)           0.333    14.937    gen_core.u_core/u_fc/accum0[25]
+    SLICE_X56Y25         LUT3 (Prop_lut3_I2_O)        0.303    15.240 r  gen_core.u_core/u_fc/accum[25]_i_1/O
+                         net (fo=1, routed)           0.000    15.240    gen_core.u_core/u_fc/accum0_in[25]
+    SLICE_X56Y25         FDRE                                         r  gen_core.u_core/u_fc/accum_reg[25]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  <hidden>
+    W5                                                0.000    10.000 r  clk
+                         net (fo=0)                   0.000    10.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.436    14.777    gen_core.u_core/u_fc/clk
+    SLICE_X56Y25         FDRE                                         r  gen_core.u_core/u_fc/accum_reg[25]/C
+                         clock pessimism              0.273    15.050    <hidden>
+                         clock uncertainty           -0.035    15.015    <hidden>
+    SLICE_X56Y25         FDRE (Setup_fdre_C_D)        0.079    15.094    gen_core.u_core/u_fc/accum_reg[25]
+  -------------------------------------------------------------------
+                         required time                         15.094    <hidden>
+                         arrival time                         -15.240    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -0.147    <hidden>
+
+Slack (VIOLATED) :        -0.139ns  (required time - arrival time)
+  Source:                 gen_core.u_core/u_fc/fc_w_rom/data_reg_0/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            gen_core.u_core/u_fc/accum_reg[27]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        10.112ns  (logic 6.091ns (60.233%)  route 4.021ns (39.767%))
+  Logic Levels:           13  (CARRY4=8 LUT2=1 LUT3=1 LUT6=3)
+  Clock Path Skew:        -0.070ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.777ns = ( 14.777 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.121ns
+    Clock Pessimism Removal (CPR):    0.273ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  <hidden>
+    W5                                                0.000     0.000 r  clk
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.600     5.121    gen_core.u_core/u_fc/fc_w_rom/clk
+    RAMB36_X2Y5          RAMB36E1                                     r  gen_core.u_core/u_fc/fc_w_rom/data_reg_0/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X2Y5          RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[1])
+                                                      2.454     7.575 r  gen_core.u_core/u_fc/fc_w_rom/data_reg_0/DOADO[1]
+                         net (fo=18, routed)          1.445     9.020    gen_core.u_core/pool_ram/out[1]
+    SLICE_X58Y21         LUT6 (Prop_lut6_I3_O)        0.124     9.144 r  gen_core.u_core/pool_ram/product__0_carry__0_i_4__0/O
+                         net (fo=2, routed)           0.570     9.713    gen_core.u_core/pool_ram/DI[0]
+    SLICE_X58Y19         LUT6 (Prop_lut6_I0_O)        0.124     9.837 r  gen_core.u_core/pool_ram/product__0_carry__0_i_8__0/O
+                         net (fo=1, routed)           0.000     9.837    gen_core.u_core/u_fc/S[0]
+    SLICE_X58Y19         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    10.369 r  gen_core.u_core/u_fc/product__0_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    10.369    gen_core.u_core/u_fc/product__0_carry__0_n_0
+    SLICE_X58Y20         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.608 r  gen_core.u_core/u_fc/product__0_carry__1/O[2]
+                         net (fo=2, routed)           1.006    11.615    gen_core.u_core/u_fc/fc_w_rom/product__89_carry__0_1[2]
+    SLICE_X59Y20         LUT6 (Prop_lut6_I1_O)        0.302    11.917 r  gen_core.u_core/u_fc/fc_w_rom/product__89_carry__0_i_6__0_comp/O
+                         net (fo=1, routed)           0.000    11.917    gen_core.u_core/u_fc/fc_w_rom_n_33
+    SLICE_X59Y20         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.398    12.315 r  gen_core.u_core/u_fc/product__89_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    12.315    gen_core.u_core/u_fc/product__89_carry__0_n_0
+    SLICE_X59Y21         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.429 r  gen_core.u_core/u_fc/product__89_carry__1/CO[3]
+                         net (fo=1, routed)           0.000    12.429    gen_core.u_core/u_fc/product__89_carry__1_n_0
+    SLICE_X59Y22         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222    12.651 r  gen_core.u_core/u_fc/product__89_carry__2/O[0]
+                         net (fo=4, routed)           0.656    13.307    gen_core.u_core/u_fc/fc_w_rom/O[0]
+    SLICE_X57Y22         LUT2 (Prop_lut2_I0_O)        0.299    13.606 r  gen_core.u_core/u_fc/fc_w_rom/accum0_carry__3_i_4/O
+                         net (fo=1, routed)           0.000    13.606    gen_core.u_core/u_fc/fc_w_rom_n_15
+    SLICE_X57Y22         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    14.156 r  gen_core.u_core/u_fc/accum0_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    14.156    gen_core.u_core/u_fc/accum0_carry__3_n_0
+    SLICE_X57Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.270 r  gen_core.u_core/u_fc/accum0_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    14.270    gen_core.u_core/u_fc/accum0_carry__4_n_0
+    SLICE_X57Y24         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.313    14.583 r  gen_core.u_core/u_fc/accum0_carry__5/O[3]
+                         net (fo=1, routed)           0.344    14.927    gen_core.u_core/u_fc/accum0[27]
+    SLICE_X56Y25         LUT3 (Prop_lut3_I2_O)        0.306    15.233 r  gen_core.u_core/u_fc/accum[27]_i_1/O
+                         net (fo=1, routed)           0.000    15.233    gen_core.u_core/u_fc/accum0_in[27]
+    SLICE_X56Y25         FDRE                                         r  gen_core.u_core/u_fc/accum_reg[27]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  <hidden>
+    W5                                                0.000    10.000 r  clk
+                         net (fo=0)                   0.000    10.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.436    14.777    gen_core.u_core/u_fc/clk
+    SLICE_X56Y25         FDRE                                         r  gen_core.u_core/u_fc/accum_reg[27]/C
+                         clock pessimism              0.273    15.050    <hidden>
+                         clock uncertainty           -0.035    15.015    <hidden>
+    SLICE_X56Y25         FDRE (Setup_fdre_C_D)        0.079    15.094    gen_core.u_core/u_fc/accum_reg[27]
+  -------------------------------------------------------------------
+                         required time                         15.094    <hidden>
+                         arrival time                         -15.233    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -0.139    <hidden>
+
+Slack (VIOLATED) :        -0.115ns  (required time - arrival time)
+  Source:                 gen_core.u_core/image_rom/data_reg_0_2/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            gen_core.u_core/u_conv/u_mac/acc_reg[22]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        10.058ns  (logic 5.649ns (56.165%)  route 4.409ns (43.835%))
+  Logic Levels:           11  (CARRY4=7 LUT4=3 LUT6=1)
+  Clock Path Skew:        -0.083ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.785ns = ( 14.785 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.129ns
+    Clock Pessimism Removal (CPR):    0.260ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  <hidden>
+    W5                                                0.000     0.000 r  clk
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.608     5.129    gen_core.u_core/image_rom/clk
+    RAMB36_X1Y2          RAMB36E1                                     r  gen_core.u_core/image_rom/data_reg_0_2/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X1Y2          RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[0])
+                                                      2.454     7.583 r  gen_core.u_core/image_rom/data_reg_0_2/DOADO[0]
+                         net (fo=17, routed)          1.126     8.709    gen_core.u_core/image_rom/out[2]
+    SLICE_X51Y5          LUT6 (Prop_lut6_I4_O)        0.124     8.833 r  gen_core.u_core/image_rom/product__0_carry__0_i_4/O
+                         net (fo=2, routed)           0.850     9.684    gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_8_0[0]
+    SLICE_X49Y14         CARRY4 (Prop_carry4_DI[0]_O[2])
+                                                      0.556    10.240 r  gen_core.u_core/u_conv/u_multiplier/product__0_carry__0/O[2]
+                         net (fo=2, routed)           0.809    11.049    gen_core.u_core/u_conv/u_multiplier/product__0_carry__0_n_5
+    SLICE_X50Y14         LUT4 (Prop_lut4_I0_O)        0.331    11.380 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_1/O
+                         net (fo=2, routed)           0.679    12.059    gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_1_n_0
+    SLICE_X50Y14         LUT4 (Prop_lut4_I3_O)        0.331    12.390 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_5/O
+                         net (fo=1, routed)           0.000    12.390    gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_5_n_0
+    SLICE_X50Y14         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    12.766 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry/CO[3]
+                         net (fo=1, routed)           0.000    12.766    gen_core.u_core/u_conv/u_multiplier/product__89_carry_n_0
+    SLICE_X50Y15         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.883 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    12.883    gen_core.u_core/u_conv/u_multiplier/product__89_carry__0_n_0
+    SLICE_X50Y16         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315    13.198 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry__1/O[3]
+                         net (fo=2, routed)           0.324    13.523    gen_core.u_core/u_conv/u_multiplier/B[15]
+    SLICE_X49Y16         LUT4 (Prop_lut4_I0_O)        0.307    13.830 r  gen_core.u_core/u_conv/u_multiplier/acc[12]_i_2/O
+                         net (fo=1, routed)           0.619    14.449    gen_core.u_core/u_conv/u_multiplier/acc[12]_i_2_n_0
+    SLICE_X51Y15         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    14.834 r  gen_core.u_core/u_conv/u_multiplier/acc_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.000    14.834    gen_core.u_core/u_conv/u_multiplier/acc_reg[12]_i_1_n_0
+    SLICE_X51Y16         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.948 r  gen_core.u_core/u_conv/u_multiplier/acc_reg[16]_i_1/CO[3]
+                         net (fo=1, routed)           0.000    14.948    gen_core.u_core/u_conv/u_multiplier/acc_reg[16]_i_1_n_0
+    SLICE_X51Y17         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    15.187 r  gen_core.u_core/u_conv/u_multiplier/acc_reg[20]_i_1/O[2]
+                         net (fo=1, routed)           0.000    15.187    gen_core.u_core/u_conv/u_mac/acc_reg[23]_0[2]
+    SLICE_X51Y17         FDRE                                         r  gen_core.u_core/u_conv/u_mac/acc_reg[22]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  <hidden>
+    W5                                                0.000    10.000 r  clk
+                         net (fo=0)                   0.000    10.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.444    14.785    gen_core.u_core/u_conv/u_mac/clk
+    SLICE_X51Y17         FDRE                                         r  gen_core.u_core/u_conv/u_mac/acc_reg[22]/C
+                         clock pessimism              0.260    15.045    <hidden>
+                         clock uncertainty           -0.035    15.010    <hidden>
+    SLICE_X51Y17         FDRE (Setup_fdre_C_D)        0.062    15.072    gen_core.u_core/u_conv/u_mac/acc_reg[22]
+  -------------------------------------------------------------------
+                         required time                         15.072    <hidden>
+                         arrival time                         -15.187    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -0.115    <hidden>
+
+Slack (VIOLATED) :        -0.099ns  (required time - arrival time)
+  Source:                 gen_core.u_core/image_rom/data_reg_0_2/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1 clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            gen_core.u_core/u_conv/u_mac/acc_reg[20]/D
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        10.042ns  (logic 5.633ns (56.095%)  route 4.409ns (43.905%))
+  Logic Levels:           11  (CARRY4=7 LUT4=3 LUT6=1)
+  Clock Path Skew:        -0.083ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.785ns = ( 14.785 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.129ns
+    Clock Pessimism Removal (CPR):    0.260ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  <hidden>
+    W5                                                0.000     0.000 r  clk
+                         net (fo=0)                   0.000     0.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.458     1.458 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.967     3.425    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.521 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.608     5.129    gen_core.u_core/image_rom/clk
+    RAMB36_X1Y2          RAMB36E1                                     r  gen_core.u_core/image_rom/data_reg_0_2/CLKARDCLK
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X1Y2          RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[0])
+                                                      2.454     7.583 r  gen_core.u_core/image_rom/data_reg_0_2/DOADO[0]
+                         net (fo=17, routed)          1.126     8.709    gen_core.u_core/image_rom/out[2]
+    SLICE_X51Y5          LUT6 (Prop_lut6_I4_O)        0.124     8.833 r  gen_core.u_core/image_rom/product__0_carry__0_i_4/O
+                         net (fo=2, routed)           0.850     9.684    gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_8_0[0]
+    SLICE_X49Y14         CARRY4 (Prop_carry4_DI[0]_O[2])
+                                                      0.556    10.240 r  gen_core.u_core/u_conv/u_multiplier/product__0_carry__0/O[2]
+                         net (fo=2, routed)           0.809    11.049    gen_core.u_core/u_conv/u_multiplier/product__0_carry__0_n_5
+    SLICE_X50Y14         LUT4 (Prop_lut4_I0_O)        0.331    11.380 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_1/O
+                         net (fo=2, routed)           0.679    12.059    gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_1_n_0
+    SLICE_X50Y14         LUT4 (Prop_lut4_I3_O)        0.331    12.390 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_5/O
+                         net (fo=1, routed)           0.000    12.390    gen_core.u_core/u_conv/u_multiplier/product__89_carry_i_5_n_0
+    SLICE_X50Y14         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.376    12.766 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry/CO[3]
+                         net (fo=1, routed)           0.000    12.766    gen_core.u_core/u_conv/u_multiplier/product__89_carry_n_0
+    SLICE_X50Y15         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.883 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    12.883    gen_core.u_core/u_conv/u_multiplier/product__89_carry__0_n_0
+    SLICE_X50Y16         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315    13.198 r  gen_core.u_core/u_conv/u_multiplier/product__89_carry__1/O[3]
+                         net (fo=2, routed)           0.324    13.523    gen_core.u_core/u_conv/u_multiplier/B[15]
+    SLICE_X49Y16         LUT4 (Prop_lut4_I0_O)        0.307    13.830 r  gen_core.u_core/u_conv/u_multiplier/acc[12]_i_2/O
+                         net (fo=1, routed)           0.619    14.449    gen_core.u_core/u_conv/u_multiplier/acc[12]_i_2_n_0
+    SLICE_X51Y15         CARRY4 (Prop_carry4_DI[3]_CO[3])
+                                                      0.385    14.834 r  gen_core.u_core/u_conv/u_multiplier/acc_reg[12]_i_1/CO[3]
+                         net (fo=1, routed)           0.000    14.834    gen_core.u_core/u_conv/u_multiplier/acc_reg[12]_i_1_n_0
+    SLICE_X51Y16         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.948 r  gen_core.u_core/u_conv/u_multiplier/acc_reg[16]_i_1/CO[3]
+                         net (fo=1, routed)           0.000    14.948    gen_core.u_core/u_conv/u_multiplier/acc_reg[16]_i_1_n_0
+    SLICE_X51Y17         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.223    15.171 r  gen_core.u_core/u_conv/u_multiplier/acc_reg[20]_i_1/O[0]
+                         net (fo=1, routed)           0.000    15.171    gen_core.u_core/u_conv/u_mac/acc_reg[23]_0[0]
+    SLICE_X51Y17         FDRE                                         r  gen_core.u_core/u_conv/u_mac/acc_reg[20]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     10.000    10.000 r  <hidden>
+    W5                                                0.000    10.000 r  clk
+                         net (fo=0)                   0.000    10.000    clk
+    W5                   IBUF (Prop_ibuf_I_O)         1.388    11.388 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.862    13.250    clk_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    13.341 r  clk_IBUF_BUFG_inst/O
+                         net (fo=421, routed)         1.444    14.785    gen_core.u_core/u_conv/u_mac/clk
+    SLICE_X51Y17         FDRE                                         r  gen_core.u_core/u_conv/u_mac/acc_reg[20]/C
+                         clock pessimism              0.260    15.045    <hidden>
+                         clock uncertainty           -0.035    15.010    <hidden>
+    SLICE_X51Y17         FDRE (Setup_fdre_C_D)        0.062    15.072    gen_core.u_core/u_conv/u_mac/acc_reg[20]
+  -------------------------------------------------------------------
+                         required time                         15.072    <hidden>
+                         arrival time                         -15.171    <hidden>
+  -------------------------------------------------------------------
+                         slack                                 -0.099    <hidden>
+
+
+
+

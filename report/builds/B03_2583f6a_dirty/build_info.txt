@@ -1,0 +1,21 @@
+build    B03
+date     2026-11-04 12:33
+commit   2583f6a (day5/synthesis)
+dirty    yes (uncommitted changes under hw/ or mem/: the Tcl scripts and Fw2 in
+         quant_params.txt; none of them change the synthesized design)
+vivado   2026.1
+top      top_basys3
+generic  (none; USE_STUB = 0, real cnn_core)
+WNS      -0.259 ns
+TNS      -2.059 ns (16 failing endpoints)
+WHS      0.096 ns
+LUT      652
+FF       405
+BRAM     12.5 tiles (12 RAMB36 + 1 RAMB18)
+DSP      0
+board    tested 2026-11-04: 16/16 images as expected (14 PASS, A and D FAIL as
+         predicted by the golden model), latency 0x1C9C8 = 117,192 cycles
+note     built in the GUI, so archived by hand from lanenet.runs/ (timing.txt =
+         timing_summary_routed.rpt, utilization.txt = utilization_placed.rpt,
+         drc.txt = drc_routed.rpt; utilization_hier.txt and critical_paths.txt
+         generated from top_basys3_routed.dcp). Same design as B01.
